@@ -29,7 +29,7 @@
 					<a class="nav-link" href="/">Home</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/notice/list.jsp">Noitce</a>
+					<a class="nav-link" href="/notice/list.jsp"><i class="fa fa-envelope-o"></i> Notice</a>
 				</li>
 
 			</ul>
@@ -38,7 +38,7 @@
 					<a class="nav-link" href="/member/register.jsp">Register</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/member/login.jsp">Login</a>
+					<a class="nav-link" href="/member/login.jsp"><i class="fa fa-user"></i> Login</a>
 				</li>
 			</ul>
 		</div>

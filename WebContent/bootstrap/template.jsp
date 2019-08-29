@@ -27,7 +27,7 @@
 					<a class="nav-link" href="/">Home</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/notice/list.jsp">Noitce</a>
+					<a class="nav-link" href="/notice/list.jsp">Notice</a>
 				</li>
 
 			</ul>
