@@ -48,7 +48,7 @@
 									<tr>
 										<th scope="row"><%=num %></th>
 										<td><%=writer %></td>
-										<td><a href="view.jsp"><%=title %></a> </td>
+										<td><a href="view.jsp?num=<%=num%>"><%=title %></a> </td>
 										<td><%=regdate %></td>
 									</tr>
 									<% 
@@ -84,7 +84,7 @@
 								</ul>
 							</nav>
 							<div class="text-right">
-								<a href="write.jsp" class="btn btn-outline-primary">등록</a>
+								<a href="write.jsp" class="btn btn-outline-primary">글쓰기</a>
 							</div>
 						</div>
 					</div>

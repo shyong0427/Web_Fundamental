@@ -139,9 +139,9 @@ public class NoticeDao {
 		try {
 			con = ConnLocator.getConnection();
 			StringBuffer sql = new StringBuffer();
-			sql.append("SELECT n_num, n_writer, n_title, date_format(n_regdate, '%Y/%m/%d') ");
+			sql.append("SELECT n_num, n_writer, n_title, n_content, date_format(n_regdate, '%Y/%m/%d') ");
 			sql.append("FROM notice ");
-			sql.append("ORDER BY n_num = ? ");
+			sql.append("where n_num = ? ");
 			
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setInt(index++, num);

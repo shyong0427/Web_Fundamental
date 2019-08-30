@@ -24,6 +24,10 @@ public class NoticeDto {
 //		this.regdate = regdate;
 	}
 
+	public NoticeDto(String writer, String title, String content) {
+		this(0, writer, title, content, null);
+	}
+
 	public int getNum() {
 		return num;
 	}
