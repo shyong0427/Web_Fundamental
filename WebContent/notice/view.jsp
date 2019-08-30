@@ -92,7 +92,7 @@
 									// 유효성 검사 불필요
 									f.action = "delete.jsp";
 									f.submit();
-								});								
+								});	;							
 							});
 						</script>
 					</div>
