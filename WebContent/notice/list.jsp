@@ -1,5 +1,12 @@
 <%@ page pageEncoding="UTF-8"%>
+<%@ page import="kr.co.kic.dev1.dto.NoticeDto"%>
+<%@ page import="kr.co.kic.dev1.dao.NoticeDao"%>
+<%@ page import="java.util.ArrayList"%>
 <%@ include file = "../inc/header.jsp" %>
+<%
+	NoticeDao dao = NoticeDao.getInstance();
+	ArrayList<NoticeDto> list = dao.select(0, 100);
+%>
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb justify-content-end">
 			<li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -11,14 +18,14 @@
 			<div class="col-sm-12">
 				<div class="card">
 					<div class="card-body">
-						<h5 class="card-title">게시판</h5>
+						<h5 class="card-title">공지사항</h5>
 						<div class="table-responsive-md">
 							<table class="table table-hover">
 								<colgroup>
 									<col width="10%" />
-									<col width="10%" />
-									<col width="70%" />
-									<col width="10%" />
+									<col width="12%" />
+									<col width="65%" />
+									<col width="15%" />
 								</colgroup>
 								<thead>
 									<tr>
@@ -29,27 +36,33 @@
 									</tr>
 								</thead>
 								<tbody>
+									<% 
+									if (list.size() != 0) {
+										for (int i = 0; i < list.size(); i++) {
+											NoticeDto dto = list.get(i);
+											int num = dto.getNum();
+											String writer = dto.getWriter();
+											String title = dto.getTitle();
+											String regdate = dto.getRegdate();
+									%>
 									<tr>
-										<th scope="row">1</th>
-										<td>성영한</td>
-										<td><a href="view.jsp">Otto Otto Otto OttoOtto Ottov Otto v Otto OttoOtto Otto
-												OttoOtto Otto</a> </td>
-										<td>2019/08/29</td>
+										<th scope="row"><%=num %></th>
+										<td><%=writer %></td>
+										<td><a href="view.jsp"><%=title %></a> </td>
+										<td><%=regdate %></td>
 									</tr>
-									<tr>
-										<th scope="row">2</th>
-										<td>Jacob</td>
-										<td>Thornton</td>
-										<td>@fat</td>
-									</tr>
-									<tr>
-										<th scope="row">3</th>
-										<td colspan="2">Larry the Bird</td>
-										<td>@twitter</td>
-									</tr>
+									<% 
+										}
+									} else { 
+									%>
+										<tr>
+										<td class="text-center" colspan="4" scope="row">공지된 게시물이 없습니다.</td>
+										</tr>	
+									<% 
+									}
+									%>
 								</tbody>
 							</table>
-
 							<nav aria-label="Page navigation example">
 								<ul class="pagination pagination-lg justify-content-center">
 									<li class="page-item disabled">
@@ -70,16 +83,13 @@
 									</li>
 								</ul>
 							</nav>
-
 							<div class="text-right">
-								<a href="#" class="btn btn-outline-primary">등록</a>
-								<a href="#" class="btn btn-outline-success">리스트</a>
+								<a href="write.jsp" class="btn btn-outline-primary">등록</a>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
 		</div>
 	</div>
 <%@ include file = "../inc/footer.jsp" %>
