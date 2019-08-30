@@ -81,7 +81,7 @@
 									if (content == "") {
 										alert("내용을 입력해주세요.");
 										$("content").focus();
-										return;S
+										return;
 									}
 									
 									f.action = "modify.jsp";
