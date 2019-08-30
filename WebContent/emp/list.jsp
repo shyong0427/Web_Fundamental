@@ -33,7 +33,7 @@
 										<th scope="col">사원번호</th>
 										<th scope="col">사원이름</th>
 										<th scope="col">직책</th>
-										<th scope="col">사수</th>
+										<th scope="col">담당사수</th>
 										<th scope="col">입사날짜</th>
 									</tr>
 								</thead>
