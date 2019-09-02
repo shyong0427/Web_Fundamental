@@ -22,7 +22,7 @@
 	} catch (NumberFormatException e) {
 		cPage = 1;
 	}
-	int length = 10;
+	int length = 5;
 	int start = (cPage - 1) * length;
 	
 	MemberDao dao = MemberDao.getInstance();
@@ -118,6 +118,7 @@
 								int totalPage = 0;
 								int startPage = 0;
 								int endPage = 0;
+								int pageLength = 5;
 								
 								totalPage = totalRows % length == 0 ? totalRows / length : totalRows / length + 1;
 								
@@ -125,13 +126,13 @@
 									totalPage = 1;
 								}
 								
-								int currentBlock = cPage % length == 0 ? cPage / length : cPage / length + 1;
-								int totalBlock = totalPage % length == 0 ? totalPage / length : totalPage / length + 1;
+								int currentBlock = cPage % pageLength == 0 ? cPage / pageLength : cPage / pageLength + 1;
+								int totalBlock = totalPage % pageLength == 0 ? totalPage / pageLength : totalPage / pageLength + 1;
 								// An = a1 + (n-1) * d;
 								// startPage 증가 = 1, 11, 21, ....
-								startPage = 1 + (currentBlock - 1) * length;
+								startPage = 1 + (currentBlock - 1) * pageLength;
 								// endPage 증가 = 10, 20, 30, ...
-								endPage = 10 + (currentBlock - 1) * length;
+								endPage = pageLength + (currentBlock - 1) * pageLength;
 								
 								if (currentBlock == totalBlock) {
 									endPage = totalPage;
@@ -160,7 +161,7 @@
 									<li class="page-item disable">
 										<a class="page-link" href="#">&raquo;</a>
 									</li>
-									<%} %>
+									<% } %>
 									</li>
 								</ul>
 							</nav>
