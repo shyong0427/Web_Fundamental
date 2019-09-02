@@ -84,7 +84,7 @@
 									<input type="text" class="form-control" name="deptno" value="<%=deptno %>" id="deptno" placeholder="부서번호를 입력해 주세요">
 								</div>
 							</div>
-							<input type="hidden" name="num" value="<%=num%>"/>
+							<input type="hidden" name="num" id="num" value="<%=num%>"/>
 						</form>
 						<div class="text-right">
 							<a href="" id="modifyEmp" class="btn btn-outline-primary">수정</a>

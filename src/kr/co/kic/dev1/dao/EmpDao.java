@@ -143,7 +143,7 @@ public class EmpDao {
 			con = ConnLocator.getConnection();
 			StringBuffer sql = new StringBuffer();
 			
-			sql.append("SELECT empno, ename, job, mgr, DATE_FORMAT(hiredate, '%Y/%m/%d') ");
+			sql.append("SELECT empno, ename, job, mgr, DATE_FORMAT(hiredate, '%Y/%m/%d'), sal, comm, deptno ");
 			sql.append("FROM emp ");
 			sql.append("WHERE empno = ? ");
 			
@@ -159,8 +159,11 @@ public class EmpDao {
 				String position = rs.getString(index++);
 				int manager = rs.getInt(index++);
 				String hiredate = rs.getString(index++);
+				int sal = rs.getInt(index++);
+				int comm = rs.getInt(index++);
+				int deptno = rs.getInt(index++);
 				
-				obj = new EmpDto(_num, name, position, manager, hiredate);				
+				obj = new EmpDto(_num, name, position, manager, hiredate, sal, comm, deptno);				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -188,7 +191,7 @@ public class EmpDao {
 			con = ConnLocator.getConnection();
 			StringBuffer sql = new StringBuffer();
 			
-			sql.append("SELECT empno, ename, job, mgr, DATE_FORMAT(hiredate, '%Y/%m/%d') ");
+			sql.append("SELECT empno, ename, job, mgr, DATE_FORMAT(hiredate, '%Y/%m/%d'), sal, comm, deptno  ");
 			sql.append("FROM emp ");
 			sql.append("ORDER BY empno ASC ");
 			sql.append("LIMIT ?, ? ");
@@ -204,9 +207,13 @@ public class EmpDao {
 				String name = rs.getString(index++);
 				String position = rs.getString(index++);
 				int manager = rs.getInt(index++);
-				String hiredate = rs.getString(index++);
+				String hiredate = rs.getString(index++);				
+				int sal = rs.getInt(index++);
+				int comm = rs.getInt(index++);
+				int deptno = rs.getInt(index++);
 				
-				list.add(new EmpDto(num, name, position, manager, hiredate));
+				
+				list.add(new EmpDto(num, name, position, manager, hiredate, sal, comm, deptno));
 			}
 			
 		} catch (SQLException e) {
