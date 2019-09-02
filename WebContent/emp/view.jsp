@@ -57,31 +57,31 @@
 							<div class="form-group row">
 								<label class="col-form-label col-sm-2" for="manager">담당사수</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" name="manager" id="manager" placeholder="담당사수를 입력해 주세요">
+									<input type="text" class="form-control" name="manager" value="<%=manager %>" id="manager" placeholder="담당사수를 입력해 주세요">
 								</div>
 							</div>
 							<div class="form-group row">
 								<label class="col-form-label col-sm-2" for="hiredate">입사날짜</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" name="hiredate" id="hiredate" placeholder="입사날짜를 입력해 주세요">
+									<input type="text" class="form-control" name="hiredate" value="<%=hiredate %>" id="hiredate" placeholder="입사날짜를 입력해 주세요">
 								</div>
 							</div>
 							<div class="form-group row">
 								<label class="col-form-label col-sm-2" for="sal">월급</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" name="sal" id="sal" placeholder="월급을 입력해 주세요">
+									<input type="text" class="form-control" name="sal" value="<%=sal %>" id="sal" placeholder="월급을 입력해 주세요">
 								</div>
 							</div>
 							<div class="form-group row">
 								<label class="col-form-label col-sm-2" for="comm">성과금</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" name="comm" id="comm" placeholder="성과금을 입력해 주세요">
+									<input type="text" class="form-control" name="comm" value="<%=comm %>" id="comm" placeholder="성과금을 입력해 주세요">
 								</div>
 							</div>
 							<div class="form-group row">
 								<label class="col-form-label col-sm-2" for="deptno">부서번호</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" name="deptno" id="deptno" placeholder="부서번호를 입력해 주세요">
+									<input type="text" class="form-control" name="deptno" value="<%=deptno %>" id="deptno" placeholder="부서번호를 입력해 주세요">
 								</div>
 							</div>
 							<input type="hidden" name="num" value="<%=num%>"/>

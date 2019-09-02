@@ -24,8 +24,12 @@ public class MemberDto {
 		this(seq, id, email, name, null, phone, regdate);
 	}
 
-	public MemberDto(String id, String email, String name, String pwd, String phone) {
-		this(0, id, email, name, pwd, phone, null);
+	public MemberDto(String id, String email, String name, String phone) {
+		this(0, id, email, name, null, phone, null);
+	}
+	
+	public MemberDto(int seq, String id, String email, String name, String phone) {
+		this(seq, id, email, name, null, phone, null);
 	}
 	
 	public int getSeq() {

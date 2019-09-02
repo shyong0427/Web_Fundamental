@@ -34,7 +34,7 @@
 							<div class="form-group row">
 								<label class="col-form-label col-sm-2" for="num">부서번호</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" name="num" id="num" placeholder="부서번호를 입력해 주세요">
+									<input type="text" class="form-control" name="num" value="<%=num %>" id="num" placeholder="부서번호를 입력해 주세요">
 								</div>
 							</div>
 							<div class="form-group row">

@@ -70,7 +70,7 @@ public class MemberDao {
 			con = ConnLocator.getConnection();
 			StringBuffer sql = new StringBuffer();
 			sql.append("UPDATE member ");
-			sql.append("SET m_id = ?, m_email = ?, m_name = ?, m_pwd = PASSWORD(?), m_phone = ?, m_regdate=NOW() ");
+			sql.append("SET m_id = ?, m_email = ?, m_name = ?, m_phone = ?, m_regdate=NOW() ");
 			sql.append("WHERE m_seq = ? ");
 			
 			pstmt = con.prepareStatement(sql.toString());
@@ -78,7 +78,6 @@ public class MemberDao {
 			pstmt.setString(index++, m.getId()); // 문자열
 			pstmt.setString(index++, m.getEmail()); // 문자열
 			pstmt.setString(index++, m.getName()); // 문자열
-			pstmt.setString(index++, m.getPwd()); // 문자열
 			pstmt.setString(index++, m.getPhone()); // 문자열
 			pstmt.setInt(index++, m.getSeq()); // 숫자
 			

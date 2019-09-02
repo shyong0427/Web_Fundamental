@@ -54,7 +54,7 @@
 									<tr>
 										<th scope="row"><%=seq %></th>
 										<td><%=name %></td>
-										<td><a href="view.jsp"><%=id %></a></td>
+										<td><a href="view.jsp?seq=<%=seq%>"><%=id %></a></td>
 										<td><%=email %></td>
 										<td><%=phone %></td>
 										<td><%=regdate %></td>
