@@ -60,7 +60,7 @@
 									} else { 
 									%>
 										<tr>
-										<td class="text-center" colspan="4" scope="row">공지된 게시물이 없습니다.</td>
+										<td class="text-center" colspan="5" scope="row">공지된 게시물이 없습니다.</td>
 										</tr>	
 									<% 
 									}

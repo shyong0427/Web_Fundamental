@@ -1,4 +1,3 @@
-<%@ page import="kr.co.kic.dev1.dto.EmpDto"%>
 <%@ page import="kr.co.kic.dev1.dao.EmpDao"%>
 <%@ page pageEncoding="utf-8" %>
 <%
