@@ -27,9 +27,7 @@
 		String id = dto.getId();
 		String email = dto.getEmail();
 		String name = dto.getName();
-		String phone = dto.getPhone();
-		
-		
+		String phone = dto.getPhone();	
 %>
 <%@ include file = "../inc/header.jsp" %>
   <nav aria-label="breadcrumb">
