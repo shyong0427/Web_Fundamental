@@ -4,16 +4,14 @@
 <%
 	String tempSeq = request.getParameter("seq");
 	int seq = 0;
-	try {
+	try{
 		seq = Integer.parseInt(tempSeq);
-	} catch(NumberFormatException e) {
+	}catch(NumberFormatException e){
 		seq = 0;
 	}
 	MemberDao dao = MemberDao.getInstance();
 	MemberDto dto = dao.select(seq);
-	
-	if (dto != null) {
-	//	seq = dto.getSeq(); 위에 seq이 선언되어 있어 중복하여 선언하지 않는다.
+	if(dto != null){
 		String id = dto.getId();
 		String email = dto.getEmail();
 		String name = dto.getName();
@@ -66,13 +64,13 @@
 			</div>
 			<script>
 				$(function () {
-					$("#modifyMember").on('click', function(event) {
+					$("#modifyMember").on("click", function(event) {
 						event.preventDefault();
 						
 						f.action = "modify.jsp";						
 						f.submit();
 					});
-					$("#deleteMember").on('click', function(event) {
+					$("#deleteMember").on("click", function(event) {
 						event.preventDefault();
 						if (confirm('정말로 삭제하시겠습니까?')) {
 							f.action = "delete.jsp";						

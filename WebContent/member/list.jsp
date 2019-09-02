@@ -1,11 +1,32 @@
-<%@page import="kr.co.kic.dev1.dao.MemberDao"%>
 <%@page import="kr.co.kic.dev1.dto.MemberDto"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="kr.co.kic.dev1.dao.MemberDao"%>
 <%@ page pageEncoding="UTF-8"%>
 <%@ include file = "../inc/header.jsp" %>
 <%
+	/*
+		page = 1 -> 1 ~ 10 / limit 0, 10 
+		page = 2 -> 11 ~ 20 / limit 10, 10
+		page = 3 -> 21 ~ 30 / limit 20, 10
+		등차수열 공식 : An = a1 + (n-1)*d
+		 >> a1 = 0, n = page, d = 10 
+		 >> 0 + (page-1)*10 = (page-1)*10
+	*/
+	String tempPage = request.getParameter("page");
+	int cPage = 0;
+	if (tempPage == null || tempPage.length() == 0) {
+		cPage = 1;	
+	}
+	try {
+		cPage = Integer.parseInt(tempPage);
+	} catch (NumberFormatException e) {
+		cPage = 1;
+	}
+	int length = 10;
+	int start = (cPage - 1) * length;
+	
 	MemberDao dao = MemberDao.getInstance();
-	ArrayList<MemberDto> list = dao.select(0, 100);
+	ArrayList<MemberDto> list = dao.select(start, length);
 %>
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb justify-content-end">
@@ -41,8 +62,8 @@
 								</thead>
 								<tbody>
 								<%
-									if (list.size() != 0) {
-										for (int i = 0; i < list.size(); i ++) {
+									if(list.size() != 0){
+										for(int i=0;i<list.size();i++){
 											MemberDto dto = list.get(i);
 											int seq = dto.getSeq();
 											String name = dto.getName();
@@ -67,6 +88,29 @@
 									<% } %>
 								</tbody>
 							</table>
+							<%
+							/*
+								totalRows -> 258개 / totalPage = 26;
+								
+								cPage = 1 -> startPage = 1, endPage = 10;
+								cPage = 2 -> startPage = 1, endPage = 10;
+								cPage = 11 -> startPage = 11, endPage = 13;
+								cPage = 12 -> startPage = 11, endPage = 13;
+								cPage = 21 -> startPage = 21, endPage = 26;
+							*/
+							
+								int totalRows = dao.getRows(); // 27개
+								int totalPage = 0;
+								int startPage = 0;
+								int endPage = 0;
+								
+								totalPage = totalRows % length == 0 ? totalRows / length : totalRows / length + 1;
+								
+								if (totalPage == 0) {
+									totalPage = 1;
+								}
+								
+							%>
 							<nav aria-label="Page navigation example">
 								<ul class="pagination pagination-lg justify-content-center">
 									<li class="page-item disabled">

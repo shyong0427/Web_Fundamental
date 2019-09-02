@@ -1,12 +1,11 @@
 <%@page import="kr.co.kic.dev1.dto.MemberDto"%>
 <%@page import="kr.co.kic.dev1.dao.MemberDao"%>
 <%@ page pageEncoding="utf-8" %>
-
 <% 
 	request.setCharacterEncoding("utf-8");
 	String id = request.getParameter("id");
-	String email = request.getParameter("email");
 	String name = request.getParameter("name");
+	String email = request.getParameter("email");
 	String pwd = request.getParameter("pwd");
 	String phone = request.getParameter("phone");
 	

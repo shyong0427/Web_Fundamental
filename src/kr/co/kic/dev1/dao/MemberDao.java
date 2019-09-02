@@ -196,7 +196,7 @@ public class MemberDao {
 					
 			rs = pstmt.executeQuery();
 					
-			if (rs.next()) {
+			while (rs.next()) {
 				index = 1;
 				int seq = rs.getInt(index++);
 				String id = rs.getString(index++);
@@ -220,5 +220,41 @@ public class MemberDao {
 			}
 				
 			return list;
+	}
+	
+	public int getRows() {
+		int count = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int index = 1;
+				
+		try {
+			con = ConnLocator.getConnection();
+			StringBuffer sql = new StringBuffer();
+			sql.append("SELECT COUNT(*) FROM member ");
+					
+			pstmt = con.prepareStatement(sql.toString());
+			
+			rs = pstmt.executeQuery();
+					
+			if (rs.next()) {
+				index = 1;
+				count = rs.getInt(index);
+			}
+					
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (pstmt != null) pstmt.close();
+				if (con != null) con.close();
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+			}
+		}
+				
+		return count;
 	}
 }
