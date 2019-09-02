@@ -94,9 +94,24 @@
 								
 								cPage = 1 -> startPage = 1, endPage = 10;
 								cPage = 2 -> startPage = 1, endPage = 10;
+								..
+								cPage = 10 -> startPage = 1, endPage = 10;
+								
+								currentBlock = 1 -> startPage = 1, endPage = 10;								
+								
 								cPage = 11 -> startPage = 11, endPage = 13;
 								cPage = 12 -> startPage = 11, endPage = 13;
+								..
+								cPage = 20 -> startPage = 11, endPage = 20;
+								
+								currentBlock = 2 -> startPage = 11, endPage = 20;
+							
 								cPage = 21 -> startPage = 21, endPage = 26;
+								..
+								cPage = 26 -> startPage = 21, endPage = 26;
+								
+								currentBlock = 3 -> startPage = 21, endPage= 26;
+								
 							*/
 							
 								int totalRows = dao.getRows(); // 27개
@@ -110,24 +125,42 @@
 									totalPage = 1;
 								}
 								
+								int currentBlock = cPage % length == 0 ? cPage / length : cPage / length + 1;
+								int totalBlock = totalPage % length == 0 ? totalPage / length : totalPage / length + 1;
+								// An = a1 + (n-1) * d;
+								// startPage 증가 = 1, 11, 21, ....
+								startPage = 1 + (currentBlock - 1) * length;
+								// endPage 증가 = 10, 20, 30, ...
+								endPage = 10 + (currentBlock - 1) * length;
+								
+								if (currentBlock == totalBlock) {
+									endPage = totalPage;
+								}
 							%>
 							<nav aria-label="Page navigation example">
 								<ul class="pagination pagination-lg justify-content-center">
+									<% if (currentBlock != 1) { %>
+									<li class="page-item">
+										<a class="page-link" href="list.jsp?page=<%=startPage -1 %>" tabindex="-1">&laquo;</a>
+									</li>
+									<% } else { %>
 									<li class="page-item disabled">
 										<a class="page-link" href="#" tabindex="-1">&laquo;</a>
 									</li>
-									<li class="page-item"><a class="page-link" href="#">1</a></li>
-									<li class="page-item"><a class="page-link" href="#">2</a></li>
-									<li class="page-item"><a class="page-link" href="#">3</a></li>
-									<li class="page-item"><a class="page-link" href="#">4</a></li>
-									<li class="page-item"><a class="page-link" href="#">5</a></li>
-									<li class="page-item"><a class="page-link" href="#">6</a></li>
-									<li class="page-item"><a class="page-link" href="#">7</a></li>
-									<li class="page-item"><a class="page-link" href="#">8</a></li>
-									<li class="page-item"><a class="page-link" href="#">9</a></li>
-									<li class="page-item"><a class="page-link" href="#">10</a></li>
+									<% } %>
+									</li>
+									<% for (int i = startPage; i <= endPage; i++) { %>
+									<li class="page-item"><a class="page-link" href="list.jsp?page=<%=i%>"><%=i %></a></li>
+									<% } %>
+									<% if (currentBlock != totalBlock) { %>
 									<li class="page-item">
+										<a class="page-link" href="list.jsp?page=<%=endPage +1 %>">&raquo;</a>
+									</li>
+									<% } else {%>
+									<li class="page-item disable">
 										<a class="page-link" href="#">&raquo;</a>
+									</li>
+									<%} %>
 									</li>
 								</ul>
 							</nav>
