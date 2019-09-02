@@ -9,6 +9,18 @@
 	}catch(NumberFormatException e){
 		seq = 0;
 	}
+	
+	String tempPage = request.getParameter("page");
+	int cPage = 0;
+	if (tempPage == null || tempPage.length() == 0) {
+		cPage = 1;	
+	}
+	try {
+		cPage = Integer.parseInt(tempPage);
+	} catch (NumberFormatException e) {
+		cPage = 1;
+	}
+	
 	MemberDao dao = MemberDao.getInstance();
 	MemberDto dto = dao.select(seq);
 	if(dto != null){
@@ -16,6 +28,8 @@
 		String email = dto.getEmail();
 		String name = dto.getName();
 		String phone = dto.getPhone();
+		
+		
 %>
 <%@ include file = "../inc/header.jsp" %>
   <nav aria-label="breadcrumb">
@@ -56,11 +70,12 @@
               </div>
               --%>
               <input type="hidden" name="seq" value="<%=seq%>"/>
+              <input type="hidden" name="page" value="<%=cPage%>"/>
             </form>
             <div class="text-right">
             	<a href="" id="modifyMember" class="btn btn-outline-primary">수정</a>
 				<a href="" id="deleteMember" class="btn btn-outline-danger">삭제</a>
-				<a href="list.jsp" class="btn btn-outline-success">리스트</a>
+				<a href="list.jsp?page=<%=cPage %>" class="btn btn-outline-success">리스트</a>
 			</div>
 			<script>
 				$(function () {
