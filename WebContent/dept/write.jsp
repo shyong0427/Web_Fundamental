@@ -3,7 +3,7 @@
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb justify-content-end">
 			<li class="breadcrumb-item"><a href="/">Home</a></li>
-			<li class="breadcrumb-item active" aria-current="page">Notice</li>
+			<li class="breadcrumb-item active" aria-current="page">Department Information</li>
 		</ol>
 	</nav>
 	<div class="container">
@@ -11,25 +11,25 @@
 			<div class="col-sm-12">
 				<div class="card">
 					<div class="card-body">
-						<h5 class="card-title">공지사항</h5>
+						<h5 class="card-local">부서정보</h5>
 
 						<form class="form-horizontal" role="form" name="f" method="post" action="save.jsp">
 							<div class="form-group row">
-								<label class="col-form-label col-sm-2" for="writer">작성자</label>
+								<label class="col-form-label col-sm-2" for="num">부서번호</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" name="writer" id="writer" placeholder="이름을 입력해 주세요">
+								<input type="text" class="form-control" name="num" id="num" placeholder="부서번호를 입력해 주세요">
 								</div>
 							</div>
 							<div class="form-group row">
-								<label class="col-form-label col-sm-2" for="title">제목</label>
+								<label class="col-form-label col-sm-2" for="name">부서이름</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" name="title" id="title" placeholder="제목을 입력해 주세요">
+									<input type="text" class="form-control" name="name" id="name" placeholder="부서이름을 입력해 주세요">
 								</div>
 							</div>
 							<div class="form-group row">
-								<label class="col-form-label col-sm-2" for="content">내용</label>
+								<label class="col-form-label col-sm-2" for="local">지역</label>
 								<div class="col-sm-10">
-									<textarea class="form-control" name="content" id="content" placeholder="내용을 입력해 주세요"></textarea>
+									<input type="text" class="form-control" name="local" id="local" placeholder="지역을 입력해 주세요">
 								</div>
 							</div>
 						</form>
@@ -42,24 +42,23 @@
 								$("#saveNotice").on("click", function(event) {
 									event.preventDefault();
 									// 유효성 검사
-									let writer = $("#writer").val();
-									if (writer == "") {
-										alert("작성자를 입력해주세요.");
-										$("writer").focus();
+									let num = $("#num").val()
+									if (num == "") {
+										alert("부서번호를 입력해주세요.");
 										return;
 									}
 									
-									let title = $("#title").val();
-									if (title == "") {
-										alert("제목을 입력해주세요.");
-										$("title").focus();
+									let name = $("#name").val();
+									if (name == "") {
+										alert("부서이름을 입력해주세요.");
+										$("name").focus();
 										return;
 									}
 									
-									let content = $("#content").val();
-									if (content == "") {
-										alert("내용을 입력해주세요.");
-										$("content").focus();
+									let local = $("#local").val();
+									if (local == "") {
+										alert("지역을 입력해주세요.");
+										$("local").focus();
 										return;
 									}
 									

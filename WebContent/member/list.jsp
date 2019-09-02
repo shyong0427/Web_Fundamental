@@ -1,5 +1,12 @@
+<%@page import="kr.co.kic.dev1.dao.MemberDao"%>
+<%@page import="kr.co.kic.dev1.dto.MemberDto"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page pageEncoding="UTF-8"%>
 <%@ include file = "../inc/header.jsp" %>
+<%
+	MemberDao dao = MemberDao.getInstance();
+	ArrayList<MemberDto> list = dao.select(0, 100);
+%>
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb justify-content-end">
 			<li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -11,17 +18,16 @@
 			<div class="col-sm-12">
 				<div class="card">
 					<div class="card-body">
-						<h5 class="card-title">회원리스트</h5>
-
+						<h5 class="card-title">회원</h5>
 						<div class="table-responsive-md">
 							<table class="table table-hover">
 								<colgroup>
 									<col width="10%" />
-									<col width="10%" />
-									<col width="10%" />
+									<col width="15%" />
+									<col width="15%" />
 									<col width="20%" />
 									<col width="20%" />
-									<col width="30%" />
+									<col width="20%" />
 								</colgroup>
 								<thead>
 									<tr>
@@ -34,33 +40,33 @@
 									</tr>
 								</thead>
 								<tbody>
+								<%
+									if (list.size() != 0) {
+										for (int i = 0; i < list.size(); i ++) {
+											MemberDto dto = list.get(i);
+											int seq = dto.getSeq();
+											String name = dto.getName();
+											String id = dto.getId();
+											String email = dto.getEmail();
+											String phone = dto.getPhone();
+											String regdate = dto.getRegdate();
+								%>
 									<tr>
-										<th scope="row">1</th>
-										<td>성영한</td>
-										<td><a href="view.jsp">syh1011</a></td>
-										<td>syh@hbilab.org</td>
-										<td>01030241703</td>
-										<td>2018/08/29</td>
+										<th scope="row"><%=seq %></th>
+										<td><%=name %></td>
+										<td><a href="view.jsp"><%=id %></a></td>
+										<td><%=email %></td>
+										<td><%=phone %></td>
+										<td><%=regdate %></td>
 									</tr>
+								<% 		} 
+									} else { %>
 									<tr>
-										<th scope="row">1</th>
-										<td>성영한</td>
-										<td>syh1011</td>
-										<td>syh@hbilab.org</td>
-										<td>01030241703</td>
-										<td>2018/08/29</td>
+										<td class="text-center" colspan = "6">회원정보가 없습니다.</td>
 									</tr>
-									<tr>
-										<th scope="row">1</th>
-										<td>성영한</td>
-										<td>syh1011</td>
-										<td>syh@hbilab.org</td>
-										<td>01030241703</td>
-										<td>2018/08/29</td>
-									</tr>
+									<% } %>
 								</tbody>
 							</table>
-
 							<nav aria-label="Page navigation example">
 								<ul class="pagination pagination-lg justify-content-center">
 									<li class="page-item disabled">
@@ -81,16 +87,12 @@
 									</li>
 								</ul>
 							</nav>
-
 							<div class="text-right">
-								<a href="#" class="btn btn-outline-primary">등록</a>
-								<a href="#" class="btn btn-outline-success">리스트</a>
+								<a href="register.jsp" class="btn btn-outline-primary">등록</a>
 							</div>
-
 						</div>
 					</div>
 				</div>
-
 			</div>
 		</div>
 <%@ include file = "../inc/footer.jsp" %>

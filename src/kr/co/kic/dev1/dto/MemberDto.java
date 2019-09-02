@@ -1,18 +1,39 @@
 package kr.co.kic.dev1.dto;
 
 public class MemberDto {
-	private String id, email, pwd;
-
+	private int seq;
+	private String id, email, name, pwd, phone, regdate;
+	
 	public MemberDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public MemberDto(String id, String email, String pwd) {
+	public MemberDto(int seq, String id, String email, String name, String pwd, String phone, String regdate) {
 		super();
+		this.seq = seq;
 		this.id = id;
 		this.email = email;
+		this.name = name;
 		this.pwd = pwd;
+		this.phone = phone;
+		this.regdate = regdate;
+	}
+
+	public MemberDto(int seq, String id, String email, String name, String phone, String regdate) {
+		this(seq, id, email, name, null, phone, regdate);
+	}
+
+	public MemberDto(String id, String email, String name, String pwd, String phone) {
+		this(0, id, email, name, pwd, phone, null);
+	}
+	
+	public int getSeq() {
+		return seq;
+	}
+
+	public void setSeq(int seq) {
+		this.seq = seq;
 	}
 
 	public String getId() {
@@ -31,6 +52,14 @@ public class MemberDto {
 		this.email = email;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public String getPwd() {
 		return pwd;
 	}
@@ -38,6 +67,21 @@ public class MemberDto {
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
-	
-	
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getRegdate() {
+		return regdate;
+	}
+
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
+	}
+
 }

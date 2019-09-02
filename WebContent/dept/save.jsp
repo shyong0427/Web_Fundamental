@@ -1,15 +1,14 @@
-<%@ page import="kr.co.kic.dev1.dto.NoticeDto"%>
-<%@ page import="kr.co.kic.dev1.dao.NoticeDao"%>
+<%@ page import="kr.co.kic.dev1.dto.DeptDto"%>
+<%@ page import="kr.co.kic.dev1.dao.DeptDao"%>
 <%@ page pageEncoding="utf-8" %>
 <%
 	request.setCharacterEncoding("utf-8");	
 
-	String writer = request.getParameter("writer");
-	String title = request.getParameter("title");
-	String content = request.getParameter("content");
+	String name = request.getParameter("name");
+	String local = request.getParameter("local");
 	
-	NoticeDao dao = NoticeDao.getInstance();
-	NoticeDto dto = new NoticeDto(writer, title, content);
+	DeptDao dao = DeptDao.getInstance();
+	DeptDto dto = new DeptDto(name, local);
 	boolean isSuccess = dao.insert(dto);
 	if (isSuccess) {
 %>

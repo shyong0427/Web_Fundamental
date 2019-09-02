@@ -1,12 +1,12 @@
-<%@ page import="kr.co.kic.dev1.dto.NoticeDto"%>
-<%@ page import="kr.co.kic.dev1.dao.NoticeDao"%>
+<%@ page import="kr.co.kic.dev1.dto.EmpDto"%>
+<%@ page import="kr.co.kic.dev1.dao.EmpDao"%>
 <%@ page pageEncoding="utf-8" %>
 <%
 	request.setCharacterEncoding("utf-8");	
 
-	int num = Integer.parseInt(request.getParameter("num"));
+	int num = Integer.parseInt(request.getParameter("empnum"));
 
-	NoticeDao dao = NoticeDao.getInstance();
+	EmpDao dao = EmpDao.getInstance();
 	boolean isSuccess = dao.delete(num);
 	if (isSuccess) {
 %>

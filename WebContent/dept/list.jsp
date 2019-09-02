@@ -1,16 +1,16 @@
 <%@ page pageEncoding="UTF-8"%>
-<%@ page import="kr.co.kic.dev1.dto.NoticeDto"%>
-<%@ page import="kr.co.kic.dev1.dao.NoticeDao"%>
+<%@ page import="kr.co.kic.dev1.dto.DeptDto"%>
+<%@ page import="kr.co.kic.dev1.dao.DeptDao"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ include file = "../inc/header.jsp" %>
 <%
-	NoticeDao dao = NoticeDao.getInstance();
-	ArrayList<NoticeDto> list = dao.select(0, 100);
+	DeptDao dao = DeptDao.getInstance();
+	ArrayList<DeptDto> list = dao.select(0, 100);
 %>
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb justify-content-end">
 			<li class="breadcrumb-item"><a href="/">Home</a></li>
-			<li class="breadcrumb-item active" aria-current="page">Notice</li>
+			<li class="breadcrumb-item active" aria-current="page">Department Information</li>
 		</ol>
 	</nav>
 	<div class="container">
@@ -18,38 +18,34 @@
 			<div class="col-sm-12">
 				<div class="card">
 					<div class="card-body">
-						<h5 class="card-title">공지사항</h5>
+						<h5 class="card-title">부서정보</h5>
 						<div class="table-responsive-md">
 							<table class="table table-hover">
 								<colgroup>
-									<col width="10%" />
-									<col width="12%" />
-									<col width="65%" />
-									<col width="15%" />
+									<col width="30%" />
+									<col width="40%" />
+									<col width="30%" />
 								</colgroup>
 								<thead>
 									<tr>
-										<th scope="col">#</th>
-										<th scope="col">작성자</th>
-										<th scope="col">제목</th>
-										<th scope="col">등록날짜</th>
+										<th scope="col">부서번호</th>
+										<th scope="col">부서명</th>
+										<th scope="col">지역</th>
 									</tr>
 								</thead>
 								<tbody>
 									<% 
 									if (list.size() != 0) {
 										for (int i = 0; i < list.size(); i++) {
-											NoticeDto dto = list.get(i);
+											DeptDto dto = list.get(i);
 											int num = dto.getNum();
-											String writer = dto.getWriter();
-											String title = dto.getTitle();
-											String regdate = dto.getRegdate();
+											String name = dto.getName();
+											String local = dto.getLocal();
 									%>
 									<tr>
 										<th scope="row"><%=num %></th>
-										<td><%=writer %></td>
-										<td><a href="view.jsp?num=<%=num%>"><%=title %></a> </td>
-										<td><%=regdate %></td>
+										<td><a href="view.jsp?deptnum=<%=num%>"><%=name %></a></td>
+										<td><%=local %> </td>
 									</tr>
 									<% 
 										}

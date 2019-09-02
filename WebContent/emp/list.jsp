@@ -1,16 +1,16 @@
 <%@ page pageEncoding="UTF-8"%>
-<%@ page import="kr.co.kic.dev1.dto.NoticeDto"%>
-<%@ page import="kr.co.kic.dev1.dao.NoticeDao"%>
+<%@ page import="kr.co.kic.dev1.dto.EmpDto"%>
+<%@ page import="kr.co.kic.dev1.dao.EmpDao"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ include file = "../inc/header.jsp" %>
 <%
-	NoticeDao dao = NoticeDao.getInstance();
-	ArrayList<NoticeDto> list = dao.select(0, 100);
+	EmpDao dao = EmpDao.getInstance();
+	ArrayList<EmpDto> list = dao.select(0, 100);
 %>
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb justify-content-end">
 			<li class="breadcrumb-item"><a href="/">Home</a></li>
-			<li class="breadcrumb-item active" aria-current="page">Notice</li>
+			<li class="breadcrumb-item active" aria-current="page">Employee Information</li>
 		</ol>
 	</nav>
 	<div class="container">
@@ -41,18 +41,19 @@
 									<% 
 									if (list.size() != 0) {
 										for (int i = 0; i < list.size(); i++) {
-											NoticeDto dto = list.get(i);
+											EmpDto dto = list.get(i);
 											int num = dto.getNum();
-											String writer = dto.getWriter();
-											String title = dto.getTitle();
-											String regdate = dto.getRegdate();
+											String name = dto.getName();
+											String position = dto.getPosition();
+											int manager = dto.getManager();
+											String hiredate = dto.getHiredate();
 									%>
 									<tr>
 										<th scope="row"><%=num %></th>
-										<td><%=writer %></td>
-										<td><a href="view.jsp?num=<%=num%>"><%=title %></a> </td>
-										<td><%=regdate %></td>
-										<td><%=regdate %></td>
+										<td><a href="view.jsp?empnum=<%=num %>"><%=name %></a></td>
+										<td><%=position %></td>
+										<td><%=manager %></td>
+										<td><%=hiredate %></td>
 									</tr>
 									<% 
 										}

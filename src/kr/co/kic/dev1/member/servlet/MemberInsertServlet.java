@@ -1,19 +1,12 @@
 package kr.co.kic.dev1.member.servlet;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 
 import kr.co.kic.dev1.dao.MemberDao;
 import kr.co.kic.dev1.dto.MemberDto;
@@ -41,9 +34,10 @@ public class MemberInsertServlet extends HttpServlet {
 //		MemberDto m = new MemberDto(id, email, password);
 //		boolean isSuccess = dao.insert(m);
 //		if (isSuccess) { ~ }
-		MemberDto m = new MemberDto(id, email, password);
-
-		if (dao.insert(m)) {
+		MemberDto m = new MemberDto();
+		boolean isSuccess = dao.insert(m);
+		
+		if (isSuccess) {
 			response.sendRedirect("/member/join/success");			
 		} else {
 			response.sendRedirect("/member/join.html");

@@ -16,7 +16,6 @@
 	<script src="../js/jquery-3.4.1.js"></script>
 	<title>Bootstrap Template</title>
 </head>
-
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#563d7c;">
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
@@ -26,12 +25,20 @@
 		<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 				<li class="nav-item active">
-					<a class="nav-link" href="/">Home</a>
+					<a class="nav-link" href="/"><i class="fa fa-home"></i> Home</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="/notice/list.jsp"><i class="fa fa-envelope-o"></i> Notice</a>
 				</li>
-
+				<li class="nave-item">
+					<a class="nav-link" href="/member/list.jsp"> Member</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/emp/list.jsp"><i class="fa fa-id-badge"></i> Employee Information</a>
+				</li>
+				<li class="nave-item">
+					<a class="nav-link" href="/dept/list.jsp"><i class="fa fa-folder"></i> Department Information</a>
+				</li>
 			</ul>
 			<ul class="navbar-nav">
 				<li class="nav-item">

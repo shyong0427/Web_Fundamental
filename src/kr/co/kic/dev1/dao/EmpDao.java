@@ -6,24 +6,24 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import kr.co.kic.dev1.dto.NoticeDto;
+import kr.co.kic.dev1.dto.EmpDto;
 import kr.co.kic.dev1.util.ConnLocator;
 
-public class NoticeDao {
-	private static NoticeDao single;
+public class EmpDao {
+	private static EmpDao single;
 
-	private NoticeDao() {
+	private EmpDao() {
 	}
 
-	public static NoticeDao getInstance() {
+	public static EmpDao getInstance() {
 		if (single == null) {
-			single = new NoticeDao();
+			single = new EmpDao();
 		}
 
 		return single;
 	}
 	
-	public boolean insert(NoticeDto n) {
+	public boolean insert(EmpDto obj) {
 		boolean isSuccess = false;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -32,14 +32,17 @@ public class NoticeDao {
 		try {
 			con = ConnLocator.getConnection();
 			StringBuffer sql = new StringBuffer();
-			sql.append("INSERT INTO notice(n_num, n_writer, n_title, n_content, n_regdate) ");
-			sql.append("VALUE(NULL, ?, ?, ?, NOW()) ");
+			
+			sql.append("INSERT INTO EMP(empno, ename, job, mgr, hiredate, sal, comm, deptno) ");
+			sql.append("VALUES (null, ?, ?, ?, SYSDATE(), ?, ?, ?) ");
 			
 			pstmt = con.prepareStatement(sql.toString());
-			// 바인딩 변수 세팅
-			pstmt.setString(index++, n.getWriter());
-			pstmt.setString(index++, n.getTitle());
-			pstmt.setString(index++, n.getContent());
+			pstmt.setString(index++, obj.getName());
+			pstmt.setString(index++, obj.getPosition());
+			pstmt.setInt(index++, obj.getManager());
+			pstmt.setInt(index++, obj.getSal());
+			pstmt.setInt(index++, obj.getComm());
+			pstmt.setInt(index++, obj.getDeptno());
 			pstmt.executeUpdate();
 			
 			isSuccess = true;
@@ -57,7 +60,7 @@ public class NoticeDao {
 		return isSuccess;
 	}
 	
-	public boolean update(NoticeDto n) {
+	public boolean update(EmpDto obj) {
 		boolean isSuccess = false;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -66,20 +69,22 @@ public class NoticeDao {
 		try {
 			con = ConnLocator.getConnection();
 			StringBuffer sql = new StringBuffer();
-			sql.append("UPDATE notice ");
-			sql.append("SET n_writer = ?, n_title = ?, n_content = ?,  n_regdate = NOW() ");
-			sql.append("WHERE n_num = ? ");
+			
+			sql.append("UPDATE emp ");
+			sql.append("SET ename = ?, job = ?, mgr = ?, hiredate = SYSDATE(), sal = ?, comm = ?, deptno= ? ");
+			sql.append("WHERE empno = ? ");
 			
 			pstmt = con.prepareStatement(sql.toString());
-			// 바인딩 변수 세팅, copy 후 사용
-			pstmt.setString(index++, n.getWriter()); // 문자열
-			pstmt.setString(index++, n.getTitle()); // 문자열
-			pstmt.setString(index++, n.getContent()); // 문자열
-			pstmt.setInt(index++, n.getNum()); // 숫자
-			
+			pstmt.setString(index++, obj.getName());
+			pstmt.setString(index++, obj.getPosition());
+			pstmt.setInt(index++, obj.getManager());
+			pstmt.setInt(index++, obj.getSal());
+			pstmt.setInt(index++, obj.getComm());
+			pstmt.setInt(index++, obj.getDeptno());
+			pstmt.setInt(index++, obj.getNum());
 			pstmt.executeUpdate();
 			
-			isSuccess = true;
+			isSuccess = true;			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -103,14 +108,14 @@ public class NoticeDao {
 		try {
 			con = ConnLocator.getConnection();
 			StringBuffer sql = new StringBuffer();
-			sql.append("DELETE FROM notice ");
-			sql.append("WHERE n_num = ? ");
+			
+			sql.append("DELETE FROM emp ");
+			sql.append("WHERE empno = ? ");
 			
 			pstmt = con.prepareStatement(sql.toString());
-			// 바인딩 변수 세팅, copy 후 사용
-			pstmt.setInt(index++, num); // 숫자
 			
-			pstmt.executeUpdate();
+			pstmt.setInt(index++, num);
+			pstmt.executeUpdate();			
 			
 			isSuccess = true;
 		} catch (Exception e) {
@@ -127,9 +132,8 @@ public class NoticeDao {
 		return isSuccess;
 	}
 	
-
-	public NoticeDto select(int num){
-		NoticeDto obj = null;
+	public EmpDto select(int num) {
+		EmpDto obj = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -138,9 +142,10 @@ public class NoticeDao {
 		try {
 			con = ConnLocator.getConnection();
 			StringBuffer sql = new StringBuffer();
-			sql.append("SELECT n_num, n_writer, n_title, n_content, date_format(n_regdate, '%Y/%m/%d') ");
-			sql.append("FROM notice ");
-			sql.append("where n_num = ? ");
+			
+			sql.append("SELECT empno, ename, job, mgr, DATE_FORMAT(hiredate, '%Y/%m/%d') ");
+			sql.append("FROM emp ");
+			sql.append("WHERE empno = ? ");
 			
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setInt(index++, num);
@@ -150,14 +155,13 @@ public class NoticeDao {
 			if (rs.next()) {
 				index = 1;
 				int _num = rs.getInt(index++);
-				String writer = rs.getString(index++);
-				String title = rs.getString(index++);
-				String content = rs.getString(index++);
-				String regdate = rs.getString(index++);				
-
-				obj = new NoticeDto(_num, writer, title, content, regdate);
+				String name = rs.getString(index++);
+				String position = rs.getString(index++);
+				int manager = rs.getInt(index++);
+				String hiredate = rs.getString(index++);
+				
+				obj = new EmpDto(_num, name, position, manager, hiredate);				
 			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -173,8 +177,8 @@ public class NoticeDao {
 		return obj;
 	}
 	
-	public ArrayList<NoticeDto> select(int start, int length) {
-		ArrayList<NoticeDto> list = new ArrayList<NoticeDto>();
+	public ArrayList<EmpDto> select(int start, int length) {
+		ArrayList<EmpDto> list = new ArrayList<EmpDto>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -183,11 +187,12 @@ public class NoticeDao {
 		try {
 			con = ConnLocator.getConnection();
 			StringBuffer sql = new StringBuffer();
-			sql.append("SELECT n_num, n_writer, n_title, date_format(n_regdate, '%Y/%m/%d') ");
-			sql.append("FROM notice ");
-			sql.append("ORDER BY n_num DESC ");
+			
+			sql.append("SELECT empno, ename, job, mgr, DATE_FORMAT(hiredate, '%Y/%m/%d') ");
+			sql.append("FROM emp ");
+			sql.append("ORDER BY empno ASC ");
 			sql.append("LIMIT ?, ? ");
-
+			
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setInt(index++, start);
 			pstmt.setInt(index++, length);
@@ -196,11 +201,12 @@ public class NoticeDao {
 			while (rs.next()) {
 				index = 1;
 				int num = rs.getInt(index++);
-				String writer = rs.getString(index++);
-				String title = rs.getString(index++);
-				String regdate = rs.getString(index++);
+				String name = rs.getString(index++);
+				String position = rs.getString(index++);
+				int manager = rs.getInt(index++);
+				String hiredate = rs.getString(index++);
 				
-				list.add(new NoticeDto(num, writer, title, regdate));
+				list.add(new EmpDto(num, name, position, manager, hiredate));
 			}
 			
 		} catch (SQLException e) {

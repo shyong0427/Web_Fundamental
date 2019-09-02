@@ -13,15 +13,10 @@
 					<div class="card-body">
 						<h5 class="card-title">Special title treatment</h5>
 						<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-						<a href="#" class="btn btn-primary">Go somewhere</a>
+						<a href="#" class="btn btn-primary">Go somewhere <i class="fa fa-share"></i></a>
 					</div>
 				</div>
 			</div>
-
 		</div>
 	</div>
-	<footer id="sticky-footer" class="py-4 bg-dark" style="color:white; margin-top: 1rem;">
-		<div class="container text-center">
-			<small>Copyright &copy; Your Website</small>
-		</div>
 <%@ include file = "../inc/footer.jsp" %>
