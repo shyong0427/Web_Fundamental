@@ -10,10 +10,9 @@
     	$(function() {
     		$.ajax({
     			type : 'GET',
-    			url : 'http://acornacademy.co.kr/blockchain/naver_json.jsp',
-    			dataType : 'jsonp',
+    			url : 'naver_book_proxy.jsp',
+    			dataType : 'json',
     			// callback key를 입력하면 함수이름은 내부적으로 정한다.
-    			jsonp : 'call', 
     			success : function(json) {
     				$("#divMessage").html(JSON.stringify(json));
     			}
