@@ -139,7 +139,7 @@
                         <ul class="pagination pagination-lg justify-content-center">
                            <% if (currentBlock != 1) { %>
                            <li class="page-item">
-                              <a class="page-link" href="list.jsp?page=<%=startPage -1 %>" tabindex="-1">&laquo;</a>
+                              <a class="page-link" href="javascript:util.pageLoading('<%=startPage - 1%>','<%=length%>')" tabindex="-1">&laquo;</a>
                            </li>
                            <% } else { %>
                            <li class="page-item disabled">
@@ -152,7 +152,7 @@
                            <% } %>
                            <% if (currentBlock != totalBlock) { %>
                            <li class="page-item">
-                              <a class="page-link" href="list.jsp?page=<%=endPage +1 %>">&raquo;</a>
+                              <a class="page-link" href="javascript:util.pageLoading('<%=endPage + 1%>','<%=length%>')">&raquo;</a>
                            </li>
                            <% } else {%>
                            <li class="page-item disable">
@@ -172,7 +172,8 @@
       </div>
       <script>
          const util = {"pageLoading" : function(p, len) {
-            console.log(p, len);
+        	 let url = 'http://localhost/member/list.jsp?page=' + p + '&length=' + len;
+        	 history.pushState(null, null, url);
             $.ajax({
                type : 'GET', // 데이터를 가져올 때 : GET, 보낼 때 : POST
                url : 'list_ajax.jsp?page=' + p + '&length=' + len,
