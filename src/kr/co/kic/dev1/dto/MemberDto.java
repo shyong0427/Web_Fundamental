@@ -32,6 +32,10 @@ public class MemberDto {
 		this(0, id, email, name, pwd, phone, null);
 	}
 	
+	public MemberDto(String email, String pwd) {
+		this(0, null, email, null, pwd, null, null);
+	}
+	
 	public int getSeq() {
 		return seq;
 	}
