@@ -47,7 +47,7 @@
 		<script>
 		const util = {
 			pageLoading :  function(p){
-					let url ='http://localhost/member/list2.jsp?page='+p;
+					let url ='http://localhost/admin/member/list2.jsp?page='+p;
 					history.pushState(null,null,url);
 					$.ajax({
 						type : 'GET',
@@ -78,7 +78,7 @@
 		}
 			
 		$(function(){
-			let url ='http://localhost/member/list2.jsp?page=<%=cPage%>';
+			let url ='http://localhost/admin/member/list2.jsp?page=<%=cPage%>';
 			history.pushState(null,null,url);
 			$.ajax({
 				type : 'GET',

@@ -11,7 +11,7 @@
 	MemberDto dto = new MemberDto(email, pwd);
 	dto = dao.isMember(dto);
 	
-	if (dto != null) {
+	if (dto != null) { 
 		// 세션기본 시간은 30분 (web.xml에서 확인가능)
 		// 프로그램에서 세션 시간을 변경할 수 있다.
 		session.setMaxInactiveInterval(30);

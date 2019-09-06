@@ -24,21 +24,39 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">파일업로드</h5>
-            <form class="form-horizontal" role="form" name="f" action="save.jsp">
+            <%--
+            	 파일 업로드시 form element에 enctype 속성을 반드시 추가해야 한다.
+             --%>
+            <form class="form-horizontal" method="post" enctype="multipart/form-data" role="form" name="f" action="upload.jsp">
               <div class="form-group">
                 <label class="col-form-label" for="name">성명</label>
                 <input type="text" class="form-control" name="name" id="name" placeholder="이름을 입력해 주세요">
                 <div = id="nameMessage"></div>
                 <div class="custom-file">
-				    <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+				    <input type="file" name="file" class="custom-file-input" id="validatedCustomFile" required>
 				    <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
 				    <div class="invalid-feedback">Example invalid custom file feedback</div>
 				  </div>
               </div>
             </form>
-            <div class="text-right">
-				<a href="" id="saveMember" class="btn btn-outline-primary">등록</a>
+            <div class="text-right mt-3">
+				<a href="" id="saveMember1" class="btn btn-outline-primary">업로드1</a>
+				<a href="" id="saveMember2" class="btn btn-outline-info">업로드2</a>
 			</div>
+			<script>
+				$(function() {
+					$("#saveMember1").on("click", function(event){
+						event.preventDefault();
+						f.submit();
+					});
+					
+					$("#saveMember2").on("click", function(event){
+						event.preventDefault();
+						$("#saveMember1").trigger('click');
+						
+					});
+				});
+			</script>
           </div>
         </div>
       </div>
