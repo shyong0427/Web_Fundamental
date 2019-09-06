@@ -28,7 +28,7 @@
                 resp.append(inputLine);
             }
             br.close();
-            System.out.println(resp.toString());
+            out.println(resp.toString());
         } catch (Exception e) {
             System.out.println(e);
         }

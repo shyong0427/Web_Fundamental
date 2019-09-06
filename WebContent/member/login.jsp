@@ -23,7 +23,7 @@
 	                <input type="password" id="pwd" name="pwd" class="form-control" placeholder="Your Password *" value="" />
 	            </div>
 	            <div class="form-row d-flex align-items-center">
-	            	<div class=""form-group col-md-8"">
+	            	<div class="form-group col-md-8">
 	                	<img class="form-control" src="" id="img_form_url"/>
 	              	</div>
 	            	<div class="form-group col-md-4">
@@ -72,6 +72,19 @@
             				success : function(json){
             					console.log(json);
             					captchaKey = json.key;
+            					$.ajax({
+            						type : 'GET',
+            						url : 'captcha/getImage.jsp?key=' + captchaKey,
+            						xhrFields : {
+            							responseType : 'blob'
+            						},
+            						success : function(data){
+            							console.log(data);
+            							const url = window.URL || window.webketURL;
+            							const src = url.createObjectURL(data);
+            							$("#img_form_url").attr("src", src);	
+            						}
+            					});
             				} // end of success
             			}); // end of outter ajax
             		}
