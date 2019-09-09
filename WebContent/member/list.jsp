@@ -28,6 +28,7 @@
    int endPage = 0;
    int pageLength = 5;
    int start = (cPage - 1) * length;
+   int pageNum = 0;
    
    MemberDao dao = MemberDao.getInstance();
    ArrayList<MemberDto> list = dao.select(start, length);
@@ -57,6 +58,7 @@
    */
 
    int totalRows = dao.getRows(); // 27개
+   pageNum = totalRows + (cPage - 1) * (-length);
    totalPage = totalRows % length == 0 ? totalRows / length : totalRows / length + 1;
    
    if (totalPage == 0) {
@@ -120,7 +122,7 @@
                                  String regdate = dto.getRegdate();
                         %>
                            <tr>
-                              <th scope="row"><%=seq %></th>
+                              <th scope="row"><%=pageNum-- %></th>
                               <td><%=name %></td>
                               <td><a href="view.jsp?seq=<%=seq%>&page=<%=cPage%>"><%=id %></a></td>
                               <td><%=email %></td>

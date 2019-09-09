@@ -34,64 +34,26 @@
 							<div class="form-group row">
 								<label class="col-form-label col-sm-2" for="num">부서번호</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" name="num" value="<%=num %>" id="num" placeholder="부서번호를 입력해 주세요">
+									 <p><%=num %></p>
 								</div>
 							</div>
 							<div class="form-group row">
 								<label class="col-form-label col-sm-2" for="name">부서이름</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" name="name" value="<%=name %>" id="name" placeholder="부서이름을 입력해 주세요">
+									 <p><%=name %></p>
 								</div>
 							</div>
 							<div class="form-group row">
 								<label class="col-form-label col-sm-2" for="local">지역</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" name="local" value="<%=local %>" id="local" placeholder="지역을 입력해 주세요">
+									 <p><%=local %></p>
 								</div>
 							</div>
 							<input type="hidden" name="num" value="<%=num%>"/>
 						</form>
 						<div class="text-right">
-							<a href="" id="modifyDept" class="btn btn-outline-primary">수정</a>
-							<a href="" id="deleteDept" class="btn btn-outline-danger">삭제</a>
 							<a href="list.jsp" class="btn btn-outline-success">리스트</a>
 						</div>
-						<script>
-							$(function() {
-								$("#modifyDept").on("click", function(event) {
-									event.preventDefault();
-									// 유효성 검사
-									let num = $("#num").val()
-									if (num == "") {
-										alert("부서번호를 입력해주세요.");
-										return;
-									}
-									
-									let name = $("#name").val();
-									if (name == "") {
-										alert("부서이름을 입력해주세요.");
-										$("name").focus();
-										return;
-									}
-									
-									let local = $("#local").val();
-									if (local == "") {
-										alert("지역을 입력해주세요.");
-										$("local").focus();
-										return;
-									}
-									
-									f.action = "modify.jsp";
-									f.submit();
-								});
-								$("#deleteDept").on("click", function(event) {
-									event.preventDefault();
-									// 유효성 검사 불필요
-									f.action = "delete.jsp";
-									f.submit();
-								});					
-							});
-						</script>
 					</div>
 				</div>
 			</div>

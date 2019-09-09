@@ -1,3 +1,4 @@
+<%@page import="kr.co.kic.dev1.util.Utility"%>
 <%@ page import="kr.co.kic.dev1.dto.NoticeDto"%>
 <%@ page import="kr.co.kic.dev1.dao.NoticeDao"%>
 <%@ page pageEncoding="UTF-8"%>
@@ -36,19 +37,19 @@
                      <div class="form-group row">
                         <label class="col-form-label col-sm-2" for="writer">작성자</label>
                         <div class="col-sm-10">
-                           <p><%=writer %></p>
+                           <p><%=Utility.getConvert(writer)%></p>
                         </div>
                      </div>
                      <div class="form-group row">
                         <label class="col-form-label col-sm-2" for="title">제목</label>
                         <div class="col-sm-10">
-                           <p><%=title %></p>
+                           <p><%=Utility.getConvert(title)%></p>
                         </div>
                      </div>
                      <div class="form-group row">
                         <label class="col-form-label col-sm-2" for="content">내용</label>
                         <div class="col-sm-10">
-                           <p><%=content.replaceAll("\n","<br>")%></p>
+                           <p><%=Utility.getConvert(content)%></p>
                         </div>
                      </div>
                   </form>
