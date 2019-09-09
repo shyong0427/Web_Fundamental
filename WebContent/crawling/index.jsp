@@ -31,7 +31,7 @@
 					<div class="card-body">
 						<h5 class="card-title">Crawling</h5>
 						<div class="table-responsive-md">
-							<table class="table-responsive table table-hover">
+							<table class="table table-hover">
 								<colgroup>
 									<col width="25%" />
 									<col width="10%" />
