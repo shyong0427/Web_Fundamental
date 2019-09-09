@@ -58,7 +58,31 @@
 							return;
             			}
             			
-            			f.submit();
+            			if ($("#captchaCode").val() == "") {
+							alert("캡차코드를 입력하세요.");
+							$("#captchaCode").focus();
+							return;
+            			}
+            			
+            			$.ajax({
+            				type : 'GET',
+            				url : 'captcha/getKeyResult.jsp?key=' + captchaKey + "&value=" +$("#captchaCode").val(),
+            				dataType : 'json',
+            				success : function(json) {
+            					console.log(json);
+            					
+            					if (json.result === true) {
+            						f.submit();
+            					} else {
+            						alert("캡차코드의 값이 일치하지 않습니다.");
+            					}
+            				}
+            			});            			
+            		});
+            		
+            		$("#refreshNumber").on("click", function(event) {
+            			event.preventDefault();
+            			loadImage();
             		});
             		
             		var loadImage = function() {

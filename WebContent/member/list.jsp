@@ -138,28 +138,26 @@
                      <nav aria-label="Page navigation example">
                         <ul class="pagination pagination-lg justify-content-center">
                            <% if (currentBlock != 1) { %>
-                           <li class="page-item">
-                              <a class="page-link" href="javascript:util.pageLoading('<%=startPage - 1%>','<%=length%>')" tabindex="-1">&laquo;</a>
+                           <li class="page-item"> <!-- "javascript:util.pageLoading -->
+                              <a class="page-link" href="list.jsp?page=('<%=startPage - 1%>','<%=length%>')" tabindex="-1">&laquo;</a>
                            </li>
                            <% } else { %>
                            <li class="page-item disabled">
                               <a class="page-link" href="#" tabindex="-1">&laquo;</a>
                            </li>
                            <% } %>
-                           </li>
-                           <% for (int i = startPage; i <= endPage; i++) { %>
-                           <li class="page-item <%if (cPage ==i) { %>active<%}%>"><a class="page-link" href="javascript:util.pageLoading('<%=i%>','<%=length%>')"><%=i %></a></li>
+                           <% for (int i = startPage; i <= endPage; i++) { %><!-- href="javascript:util.pageLoading('<%=i%>','<%=length%>')"><%=i %> -->
+                           <li class="page-item <%if (cPage ==i) { %>active<%}%>"><a class="page-link" href="list.jsp?page=<%=i %>"><%=i %></a></li>
                            <% } %>
                            <% if (currentBlock != totalBlock) { %>
-                           <li class="page-item">
-                              <a class="page-link" href="javascript:util.pageLoading('<%=endPage + 1%>','<%=length%>')">&raquo;</a>
+                           <li class="page-item"> <!-- href="javascript:util.pageLoading('<%=endPage + 1%>','<%=length%>') -->
+                              <a class="page-link" href="list.jsp?page=<%=endPage+1 %>">&raquo;</a>
                            </li>
                            <% } else {%>
-                           <li class="page-item disable">
+                           <li class="page-item disabled">
                               <a class="page-link" href="#">&raquo;</a>
                            </li>
                            <% } %>
-                           </li>
                         </ul>
                      </nav>
                      <div class="text-right">
@@ -170,7 +168,8 @@
             </div>
          </div>
       </div>
-      <script>
+   </div>
+<!--      <script>
          const util = {"pageLoading" : function(p, len) {
         	 let url = 'http://localhost/member/list.jsp?page=' + p + '&length=' + len;
         	 history.pushState(null, null, url);
@@ -192,7 +191,5 @@
          	$(this).addClass("active");
          	$(this).siblings().removeClass("active");
          });
-         
-         
-      </script>
+      </script> -->
 <%@ include file = "../inc/footer.jsp" %>
